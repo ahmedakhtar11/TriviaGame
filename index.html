@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+	<meta charset="UTF-8">
+
+	<title>Random Trivia Game</title>
+
+	<!-- CSS -->
+	<link rel = "stylesheet" href="assets/css/reset.css">
+	<link rel = "stylesheet" href="assets/css/style.css">
+
+	<!-- CSS Google Fonts -->
+	<link href = "https://fonts.googleapis.com/css?family=Anton|Joti+One|Lobster" rel="stylesheet">
+
+	<!-- Javascript -->
+	<script src = "https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	<script src = "assets/javascript/script.js"></script>
+
+</head>
+
+
+<body>
+
+	<div id="thememusic">
+        <button class="btn btn-warning btn theme-button"><span class="glyphicon glyphicon-music"></span> Play Theme!</button>
+        <button class="btn btn-default btn pause-button"><span class="glyphicon glyphicon-pause"></span> Pause Song</button>
+      </div>
+
+
+	<!-- Container -->
+	<div class = "container">
+
+		<!-- Title -->
+		<h1 id = "title">Trivia Game</h1>
+
+		<!-- Time -->
+		<div id="timeclock"></div>
+
+		<!-- Start button -->
+		<div id="start">
+			<button id="buttonstart">Start</button>
+		</div>
+
+		<!-- Answer options -->
+		<h3 id="answeroptions">
+			<div id="option0"></div>
+			<div id="option1"></div>
+			<div id="option2"></div>
+			<div id="option3"></div>
+
+		<!-- Images Displaying -->
+			<div id="images"></div>
+			
+			<!-- Reset Button -->
+			<button id="buttonreset">Reset</button>
+		</h3>
+	</div>
+</body>
+</html>
