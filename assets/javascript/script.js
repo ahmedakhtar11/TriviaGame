@@ -6,7 +6,7 @@ $(document).ready(function() {
 
 	// Audio for Theme Song
     var audioElement = document.createElement("audio");
-    audioElement.setAttribute("src", "Assets/finalfantasyzanarkand.mp3");
+    audioElement.setAttribute("src", "assets/finalfantasyzanarkand.mp3");
 
     // Theme Music Play Button
     $(".theme-button").on("click", function() {
