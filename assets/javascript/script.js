@@ -19,10 +19,10 @@ $(document).ready(function() {
     });
 
     //Var array to hold correct answers
-	var correctoptions = ["1920", "30 Days", "25%", "The Moon revolving around the Earth", "Thor's Day", "Ludacris"];
+	var correctoptions = ["1920", "30 Days", "25%", "The Moon revolving around the Earth", "Thor's Day", "Ludacris", "Earth"];
 
 	//Var array to reference images]
-	var correctImage = ["0.jpg", "1.jpg", "2.jpg", "3.jpg", "4.jpg", "5.jpg"];
+	var correctImage = ["0.jpg", "1.jpg", "2.jpg", "3.jpg", "4.jpg", "5.jpg", "6.jpg"];
 
 	//Var to hold Wrong option total
 	var wrongoption = 0;
@@ -46,7 +46,8 @@ $(document).ready(function() {
         choices3: ["5%", "2%", "10%", "25%"],
         choices4: ["The Earth revolving around the Sun", "The Moon revolving around the Earth", "The Earth making a rotation", "The Sun making a rotation"],
         choices5: ["Moon Day", "Sun Day", "Thor's Day", "Woden's day"],
-        choices6: ["Steve Jobs", "Mark Zuckerburg", "Ludacris", "Bill Gates"]
+        choices6: ["Steve Jobs", "Mark Zuckerburg", "Ludacris", "Bill Gates"],
+        choices7: ["Saturn", "Jupiter", "Earth", "Uranus"]
       };
 
     //Var Array for all question choices
@@ -56,7 +57,8 @@ $(document).ready(function() {
         question3: ["The U.S. holds what percent of the world's total prisoners?"],
         question4: ["What is a month a measure of?"],
         question5: ["What was the day Thursday named after?"],
-        question6: ["Who didn't drop out of college?"]
+        question6: ["Who didn't drop out of college?"],
+        question7: ["On which planet does it NOT rain diamonds?"]
       };
 
       // Var to hold index of current question.
@@ -66,10 +68,10 @@ $(document).ready(function() {
       var optionIndex = 0;
 
       // Const to hold Array of Questions
-      const questionsArray = [questions.question1, questions.question2, questions.question3, questions.question4, questions.question5, questions.question6];
+      const questionsArray = [questions.question1, questions.question2, questions.question3, questions.question4, questions.question5, questions.question6, questions.question7];
       
       // Const to hold Array of Answers
-      const optionsArray = [options.choices1, options.choices2, options.choices3, options.choices4, options.choices5, options.choices6];
+      const optionsArray = [options.choices1, options.choices2, options.choices3, options.choices4, options.choices5, options.choices6, options.choices7];
 
       // Var to Start the Game.
       var begingame;
@@ -108,7 +110,7 @@ $(document).ready(function() {
 	function nextquestion() {
 
 	//If Else Statement. Setting Number of Questions
-	if(questionIndex < 5){
+	if(questionIndex < 6){
 		questionIndex++;
 		optionIndex++;
 		showquestions();
@@ -117,7 +119,7 @@ $(document).ready(function() {
 		}
 
 	//Game ends after all questions
-	else if (questionIndex === 5){
+	else if (questionIndex === 6){
 		begingame = false;
 		stop();
 		$("#option0, #option1, #option2, #option3").hide();
