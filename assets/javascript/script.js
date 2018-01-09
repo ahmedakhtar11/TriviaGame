@@ -19,10 +19,10 @@ $(document).ready(function() {
     });
 
     //Var array to hold correct answers
-	var correctoptions = ["1920", "30 Days", "25%", "The Moon revolving around the Earth", "Thor's Day"];
+	var correctoptions = ["1920", "30 Days", "25%", "The Moon revolving around the Earth", "Thor's Day", "Ludacris"];
 
-	//Var array to reference images
-	var correctImage = ["0.jpg", "1.jpg", "2.jpg", "3.jpg", "4.jpg"];
+	//Var array to reference images]
+	var correctImage = ["0.jpg", "1.jpg", "2.jpg", "3.jpg", "4.jpg", "5.jpg"];
 
 	//Var to hold Wrong option total
 	var wrongoption = 0;
@@ -36,16 +36,17 @@ $(document).ready(function() {
 	//Var for timer
 	var timer;
 
-	//Var for IntervalID
-	var IntervalID;
+	//Var for intervalId
+	var intervalId;
 
 	//Var Array for all option choices
 	const options = {
-        optionchoices1: ["1720", "1869", "1920", "1820"],
-        optionchoices2: ["6 months", "1 year", "30 Days", "3 months"],
-        optionchoices3: ["5%", "2%", "10%", "25%"],
-        optionchoices4: ["The Earth revolving around the Sun", "The Moon revolving around the Earth", "The Earth making a rotation", "The Sun making a rotation"],
-        optionchoices5: ["Moon Day", "Sun Day", "Thor's Day", "Woden's day"]
+        choices1: ["1720", "1869", "1920", "1820"],
+        choices2: ["6 months", "1 year", "30 Days", "3 months"],
+        choices3: ["5%", "2%", "10%", "25%"],
+        choices4: ["The Earth revolving around the Sun", "The Moon revolving around the Earth", "The Earth making a rotation", "The Sun making a rotation"],
+        choices5: ["Moon Day", "Sun Day", "Thor's Day", "Woden's day"],
+        choices6: ["Steve Jobs", "Mark Zuckerburg", "Ludacris", "Bill Gates"]
       };
 
     //Var Array for all question choices
@@ -54,7 +55,8 @@ $(document).ready(function() {
         question2: ["How long does it take for an aluminum can you throw away to be recycled and be back in your hand as a new drink?"],
         question3: ["The U.S. holds what percent of the world's total prisoners?"],
         question4: ["What is a month a measure of?"],
-        question5: ["What was the day Thursday named after?"]
+        question5: ["What was the day Thursday named after?"],
+        question6: ["Who didn't drop out of college?"]
       };
 
       // Var to hold index of current question.
@@ -64,13 +66,13 @@ $(document).ready(function() {
       var optionIndex = 0;
 
       // Const to hold Array of Questions
-      const questionsArray = [questions.question1, questions.question2, questions.question3, questions.question4, questions.question5];
+      const questionsArray = [questions.question1, questions.question2, questions.question3, questions.question4, questions.question5, questions.question6];
       
       // Const to hold Array of Answers
-      const optionsArray = [options.optionchoices1, options.optionchoices2, options.optionchoices3, options.optionchoices4, options.optionchoices5];
+      const optionsArray = [options.choices1, options.choices2, options.choices3, options.choices4, options.choices5, options.choices6];
 
       // Var to Start the Game.
-      var gameBegin;
+      var begingame;
 
       //Jquery Hide Reset Button
       $('#buttonreset').hide();
@@ -79,15 +81,15 @@ $(document).ready(function() {
 	  $('#buttonstart').click(function(){
 
 		//Function to Start Game
-		gameBegin = true;
-		startGame();
+		begingame = true;
+		gamestart();
 		//Hide the start button
 		$('#buttonstart').hide();
-		showReset();
+		showreset();
 	});
 
 	//Function to start Game
-	function startGame() {
+	function gamestart() {
 		showquestions();
 	};
 
@@ -103,10 +105,10 @@ $(document).ready(function() {
 	};
 
 	//Next question function
-	function next() {
+	function nextquestion() {
 
 	//If Else Statement. Setting Number of Questions
-	if(questionIndex < 4){
+	if(questionIndex < 5){
 		questionIndex++;
 		optionIndex++;
 		showquestions();
@@ -115,47 +117,47 @@ $(document).ready(function() {
 		}
 
 	//Game ends after all questions
-	else if (questionIndex === 4){
-		gameBegin = false;
+	else if (questionIndex === 5){
+		begingame = false;
 		stop();
 		$("#option0, #option1, #option2, #option3").hide();
 		$('#images').hide();
 		$('#timeclock').hide();
 		$('#start').html("<h2>Incorrect Answers: "+ wrongoption+"<br>Correct Answers: "+totalscore+"<br>Unanswered Questions: "+unanswered+'</h2>');
-		showReset();
+		showreset();
 		}
 	};
 
 
 	//Choosing the Correct Answer
-	$("#option0, #option1, #option2, #option3").on("click", function(word) {
+	$("#option0, #option1, #option2, #option3").on("click", function(rightanswer) {
 
-		var word = "";
-		word = $(this).text();
+		var rightanswer = "";
+		rightanswer = $(this).text();
 		
 	//Events after the Correct Answer is Picked
-		if(word == correctoptions[optionIndex]){
+		if(rightanswer == correctoptions[optionIndex]){
 			$('#start').html("<h2>Correct! The Answer is: "+correctoptions[optionIndex]+"</h2>");
 			$("#option0, #option1, #option2, #option3").hide();
-			showImage();
-			setTimeout(next, 2000);
+			imagedisplay();
+			setTimeout(nextquestion, 2000);
 			stop();
 			totalscore++;
 		}
 
 	//Checks if the wrong answer is selected
-		else if (word != correctoptions[optionIndex]){
+		else if (rightanswer != correctoptions[optionIndex]){
 			$('#start').html("<h2>Incorrect Choice! The Correct Answer is: "+correctoptions[optionIndex]+"</h2>");
 			$("#option0, #option1, #option2, #option3").hide();
-			showImage();
+			imagedisplay();
 			stop();
-			setTimeout(next, 2000);
+			setTimeout(nextquestion, 2000);
 			wrongoption++;
 		}
       });
 
 	//Function to show images.
-	function showImage() {
+	function imagedisplay() {
 		$('#images').show();
 		$('#images').html("<img src='assets/images/"+correctImage[optionIndex]+"'>");
 	};
@@ -181,12 +183,12 @@ $(document).ready(function() {
     //Start the Timer
 	function time(){
 	
-	//Question Time Out after 30 seconds
-	timer = 25;
-	clearInterval(IntervalID);
+	//Question Time Out after 20 seconds
+	timer = 20;
+	clearInterval(intervalId);
 
 	//Decrementing Timer
-    IntervalID = setInterval(decrement, 1000);
+    intervalId = setInterval(decrement, 1000);
 	}
 
 	//Resets game to Question 1
@@ -199,16 +201,16 @@ $(document).ready(function() {
 		wrongoption = 0;
 		unanswered = 0;
 		totalscore = 0;
-		startGame();
+		gamestart();
 	}
 
 	//Hide reset button when Game Begins
-	function showReset(){
-		if (gameBegin == true) {
+	function showreset(){
+		if (begingame == true) {
 			$('#buttonreset').hide();
 		}
 	//Show reset button when Game Ends
-		else if (gameBegin == false){
+		else if (begingame == false){
 			$('#buttonreset').show();
 		}
 	}
@@ -220,21 +222,23 @@ $(document).ready(function() {
     timer--;
 
     //Display remaining time
-     $("#timeclock").html("<h2>Time Remaining: " + timer + "</h2>");
+     $("#timeclock").html("<h2>Time Left: " + timer + "</h2>");
     
     // Surpassing the Time Limit for Questions
       if (timer === 0) {
+        //Alert the user that time is up.
         $("#timeclock").html("<h2>Time's Up!</h2>");
-        $('#start').html('<h2>Time up! The correct option is '+correctoptions[optionIndex]+'</h2>');
-		$("#option1, #option3, #option2, #option1").hide();
-		stop();
-		setTimeout(next, 2000);
+        $('#start').html('<h2>You ran out of time! The correct answer is: '+correctoptions[optionIndex]+'</h2>');
+		$("#option0, #option1, #option2, #option3").hide();
+		imagedisplay();
+	    stop();
+		setTimeout(nextquestion, 2000);
 		unanswered++;
       }
   	}
 
-  	//Stopping timer and clearing IntervalID
+  	//Stopping timer and clearing intervalId
     function stop() {
-    	clearInterval(IntervalID);
+    	clearInterval(intervalId);
     }
 });
