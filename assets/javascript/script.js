@@ -4,6 +4,7 @@ $(document).ready(function() {
 	$("#title").css("color", "purple")
 	$("body").css("color", "#02153F")
 
+
 	// Audio for Theme Song
     var audioElement = document.createElement("audio");
     audioElement.setAttribute("src", "assets/finalfantasyzanarkand.mp3");
