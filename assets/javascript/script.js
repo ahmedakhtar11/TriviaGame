@@ -121,7 +121,7 @@ $(document).ready(function() {
 	//Game ends after all questions
 	else if (questionIndex === 6){
 		begingame = false;
-		stop();
+		endgame();
 		$("#option0, #option1, #option2, #option3").hide();
 		$('#images').hide();
 		$('#timeclock').hide();
@@ -143,7 +143,7 @@ $(document).ready(function() {
 			$("#option0, #option1, #option2, #option3").hide();
 			imagedisplay();
 			setTimeout(nextquestion, 2000);
-			stop();
+			endgame();
 			totalscore++;
 		}
 
@@ -152,7 +152,7 @@ $(document).ready(function() {
 			$('#start').html("<h2>Incorrect Choice! The Correct Answer is: "+correctoptions[optionIndex]+"</h2>");
 			$("#option0, #option1, #option2, #option3").hide();
 			imagedisplay();
-			stop();
+			endgame();
 			setTimeout(nextquestion, 2000);
 			wrongoption++;
 		}
@@ -217,7 +217,7 @@ $(document).ready(function() {
 		}
 	}
 
-	//This functions decreases the timer and stops it
+	//This functions decreases the timer
     function decrement() {
 
     // Time decreasing (--)
@@ -229,18 +229,17 @@ $(document).ready(function() {
     // Surpassing the Time Limit for Questions
       if (timer === 0) {
         //Alert the user that time is up.
-        $("#timeclock").html("<h2>Time's Up!</h2>");
         $('#start').html('<h2>You ran out of time! The correct answer is: '+correctoptions[optionIndex]+'</h2>');
 		$("#option0, #option1, #option2, #option3").hide();
 		imagedisplay();
-	    stop();
+	    endgame();
 		setTimeout(nextquestion, 2000);
 		unanswered++;
       }
   	}
 
   	//Stopping timer and clearing intervalId
-    function stop() {
+    function endgame() {
     	clearInterval(intervalId);
     }
 });
