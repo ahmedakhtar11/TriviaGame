@@ -1,9 +1,8 @@
 $(document).ready(function() {
 
 	//CSS Manipulation
-	$("#title").css("color", "purple")
-	$("body").css("color", "#02153F")
-
+	$("#title").css("color", "purple");
+	$("body").css("color", "#02153F");
 
 	// Audio for Theme Song
     var audioElement = document.createElement("audio");
