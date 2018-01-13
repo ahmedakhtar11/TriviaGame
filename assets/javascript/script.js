@@ -1,7 +1,7 @@
 $(document).ready(function() {
 
 	//CSS Manipulation
-	$("#title").css("color", "purple");
+	$("#title").css("color", "purple").css("font-weight", "bolder");
 	$("body").css("color", "#02153F");
 
 	// Audio for Theme Song
@@ -22,13 +22,13 @@ $(document).ready(function() {
 	var correctoptions = ["1920", "30 Days", "25%", "The Moon revolving around the Earth", "Thor's Day", "Ludacris", "Earth"];
 
 	//Var array to reference images]
-	var correctImage = ["0.jpg", "1.jpg", "2.jpg", "3.jpg", "4.jpg", "5.jpg", "6.jpg"];
+	var correctImage = ["a.jpg", "b.jpg", "c.jpg", "d.jpg", "e.jpg", "f.jpg", "g.jpg"];
 
 	//Var to hold Wrong option total
-	var wrongoption = 0;
+	let wrongoption = 0;
 
 	//Var to hold Unanswered question totals
-	var unanswered = 0;
+	let unanswered = 0;
 
 	//Var to hold totalscore
 	var totalscore = 0;
@@ -38,6 +38,16 @@ $(document).ready(function() {
 
 	//Var for intervalId
 	var intervalId;
+
+	// Var to hold index of current question.
+    var questionIndex = 0;
+
+    // Var to hold current index of options.
+    var optionIndex = 0;
+
+    // Var to Start the Game.
+    var begingame;
+
 
 	//Var Array for all option choices
 	const options = {
@@ -61,33 +71,25 @@ $(document).ready(function() {
         question7: ["On which planet does it NOT rain diamonds?"]
       };
 
-      // Var to hold index of current question.
-      var questionIndex = 0;
-
-      // Var to hold current index of options.
-      var optionIndex = 0;
-
-      // Const to hold Array of Questions
-      const questionsArray = [questions.question1, questions.question2, questions.question3, questions.question4, questions.question5, questions.question6, questions.question7];
+    // Const to hold Array of Questions
+    const questionsArray = [questions.question1, questions.question2, questions.question3, questions.question4, questions.question5, questions.question6, questions.question7];
       
-      // Const to hold Array of Answers
-      const optionsArray = [options.choices1, options.choices2, options.choices3, options.choices4, options.choices5, options.choices6, options.choices7];
+    // Const to hold Array of Answers
+    const optionsArray = [options.choices1, options.choices2, options.choices3, options.choices4, options.choices5, options.choices6, options.choices7];
 
-      // Var to Start the Game.
-      var begingame;
+    //Jquery Hide Reset Button
+    $('#buttonreset').hide();
 
-      //Jquery Hide Reset Button
-      $('#buttonreset').hide();
+	//Start Game
+	$('#buttonstart').click(function(){
 
-	  //Start Game
-	  $('#buttonstart').click(function(){
+	//Function to Start Game
+	begingame = true;
+	gamestart();
+	//Hide the start button
+	$('#buttonstart').hide();
+	showreset();
 
-		//Function to Start Game
-		begingame = true;
-		gamestart();
-		//Hide the start button
-		$('#buttonstart').hide();
-		showreset();
 	});
 
 	//Function to start Game
@@ -111,8 +113,8 @@ $(document).ready(function() {
 
 	//If Else Statement. Setting Number of Questions
 	if(questionIndex < 6){
-		questionIndex++;
 		optionIndex++;
+		questionIndex++;
 		showquestions();
 		$("#option0, #option1, #option2, #option3").show();
 		$('#images').hide();
@@ -123,8 +125,8 @@ $(document).ready(function() {
 		begingame = false;
 		endgame();
 		$("#option0, #option1, #option2, #option3").hide();
-		$('#images').hide();
 		$('#timeclock').hide();
+		$('#images').hide();
 		$('#start').html("<h2>Incorrect Answers: "+ wrongoption+"<br>Correct Answers: "+totalscore+"<br>Unanswered Questions: "+unanswered+'</h2>');
 		showreset();
 		}
@@ -152,8 +154,8 @@ $(document).ready(function() {
 			$('#start').html("<h2>Incorrect Choice! The Correct Answer is: "+correctoptions[optionIndex]+"</h2>");
 			$("#option0, #option1, #option2, #option3").hide();
 			imagedisplay();
-			endgame();
 			setTimeout(nextquestion, 2000);
+			endgame();
 			wrongoption++;
 		}
       });
@@ -200,8 +202,8 @@ $(document).ready(function() {
 		$("#option0, #option1, #option2, #option3").show();
 		$('#timeclock').show();
 		time();
-		wrongoption = 0;
 		unanswered = 0;
+		wrongoption = 0;
 		totalscore = 0;
 		gamestart();
 	}
